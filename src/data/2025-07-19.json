@@ -1,0 +1,10 @@
+{
+  "jugadores": [
+    {
+      "nombre": "seba",
+      "anfitrion": false
+    }
+  ],
+  "compras": [],
+  "cerrado": false
+}
