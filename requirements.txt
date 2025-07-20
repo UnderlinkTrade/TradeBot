@@ -14,4 +14,4 @@ scikit-learn
 ib_insync
 xbbg
 openai
-subprocess
+
