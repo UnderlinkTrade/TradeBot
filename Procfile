@@ -1,1 +1,2 @@
-worker: python main.py
+worker: python src/live_monitorCurren.py
+
