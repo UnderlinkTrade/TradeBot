@@ -10,3 +10,4 @@ polygon-api-client
 telethon
 tensorflow==2.17.1
 python-dotenv
+scikit-learn
