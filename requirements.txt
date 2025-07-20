@@ -8,5 +8,5 @@ ta
 trading-ig
 polygon-api-client
 telethon
-tensorflow-cpu==2.14.0
+tensorflow==2.17.1
 python-dotenv
