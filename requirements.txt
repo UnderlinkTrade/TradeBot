@@ -11,3 +11,6 @@ telethon
 tensorflow==2.17.1
 python-dotenv
 scikit-learn
+ib_insync
+xbbg
+openai
