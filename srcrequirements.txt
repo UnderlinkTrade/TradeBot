@@ -1,0 +1,12 @@
+pandas
+numpy
+requests
+openpyxl
+xlsxwriter
+joblib
+ta
+trading-ig
+polygon-api-client
+telethon
+tensorflow==2.14.0
+python-dotenv
