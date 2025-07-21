@@ -73,4 +73,4 @@ def obtener_ultima_y_actualizar_csv(symbol: str, interval: str = "5m", initial_d
 
 
 if __name__ == "__main__":
-    obtener_ultima_y_actualizar_csv("EURGBP", interval="5m", initial_days=5)
+    obtener_ultima_y_actualizar_csv("EURUSD=X", interval="5m", initial_days=5)
