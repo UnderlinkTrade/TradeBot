@@ -43,7 +43,7 @@ configuraciones = {
     },
 
         "GBPJPY": {
-        "ruta": "/content/drive/MyDrive/Colab Notebooks/historicos/eurusd_5min_2025.csv",
+        "ruta": "/content/drive/MyDrive/Colab Notebooks/historicos/gbpjpy_5min_2025.csv",
         "pip_size": 0.01,
         "atr_min_vals": [0.07, 0.1, 0.14, 0.2],
     },
