@@ -17,9 +17,9 @@ fecha_formateada = f"{fecha_inicio.replace('-', '')}_hasta_{fecha_fin.replace('-
 
 activos_ejecutar = {
     "USDJPY": False,
-    "EURGBP": True,
+    "EURGBP": False,
     "EURUSD": False,
-    "GBPJPY": False,   
+    "GBPJPY": True,   
     "GBPUSD": False
 }
 
