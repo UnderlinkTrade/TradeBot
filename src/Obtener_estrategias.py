@@ -23,7 +23,7 @@ activos_ejecutar = {
     "GBPUSD": False
 }
 
-modo_operacion = "VEN"
+modo_operacion = "AMBAS"
 
 configuraciones = {
     "USDJPY": {
