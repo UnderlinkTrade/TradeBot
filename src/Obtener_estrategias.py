@@ -5,21 +5,20 @@ import os
 import re
 from datetime import datetime
 
+API_KEY = "MItpr9kHZmufmbqbGvxu_S7FsWF8Sljb"
+
 # === Configuración general ===
 fecha_inicio = "2022-01-01"
-fecha_fin = "2025-07-09"
-
+fecha_fin = "2025-07-25"
 fecha_inicio_dt = pd.to_datetime(fecha_inicio)
 fecha_fin_dt = pd.to_datetime(fecha_fin)
-
 fecha_formateada = f"{fecha_inicio.replace('-', '')}_hasta_{fecha_fin.replace('-', '')}"
-
 
 activos_ejecutar = {
     "USDJPY": False,
     "EURGBP": False,
     "EURUSD": False,
-    "GBPJPY": True,   
+    "GBPJPY": True,
     "GBPUSD": False
 }
 
@@ -41,8 +40,7 @@ configuraciones = {
         "pip_size": 0.0001,
         "atr_min_vals": [0.0004, 0.00055, 0.0007, 0.001],
     },
-
-        "GBPJPY": {
+    "GBPJPY": {
         "ruta": "data/gbpjpy_5min_2025.csv",
         "pip_size": 0.01,
         "atr_min_vals": [0.07, 0.1, 0.14, 0.2],
@@ -64,6 +62,32 @@ ema_slope_filter = [True, False]
 candle_bullish_filter = [True, False]
 candle_bearish_filter = [True, False]
 exposicion = 30000
+
+def descargar_datos_polygon(simbolo: str, inicio: datetime, fin: datetime, ruta: str):
+    print(f"📥 Descargando datos reales de {simbolo} desde Polygon...")
+    client = RESTClient(API_KEY)
+    try:
+        aggs = client.get_aggregate_bars(
+            symbol=f"C:{simbolo}",
+            multiplier=5,
+            timespan="minute",
+            from_=inicio.strftime("%Y-%m-%d"),
+            to=fin.strftime("%Y-%m-%d"),
+            adjusted=True,
+            full_range=True
+        )
+        records = [a._asdict() for a in aggs]
+        df = pd.DataFrame(records)
+        df['timestamp'] = pd.to_datetime(df['t'], unit='ms')
+        df = df.rename(columns={
+            'o': 'Open', 'h': 'High', 'l': 'Low',
+            'c': 'Close', 'v': 'Volume'
+        })[['timestamp', 'Open', 'High', 'Low', 'Close', 'Volume']]
+        os.makedirs(os.path.dirname(ruta), exist_ok=True)
+        df.to_csv(ruta, index=False)
+        print(f"✅ Datos guardados en: {ruta}")
+    except Exception as e:
+        print(f"❌ Error al descargar datos de {simbolo}: {e}")
 
 def rsi(series, period=14):
     delta = series.diff()
