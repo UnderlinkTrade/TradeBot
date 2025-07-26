@@ -129,7 +129,7 @@ def calcular_adx(df, period=14):
     dx = (abs(plus_di - minus_di) / (plus_di + minus_di)) * 100
     return dx.ewm(alpha=1/period).mean()
 
-def simular(df, tp_pips, sl_pips, pip_size, tipo):
+def simular(df, tp_pips, sl_pips, pip_size, tipo, exposicion):
     df = df.copy()
     spread_pips = 2  # Spread en pips usado solo para evaluación, no para PnL
 
