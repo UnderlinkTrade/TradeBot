@@ -208,7 +208,7 @@ def procesar_tipo_operacion(df, simbolo, tipo, tp_vals, sl_vals, rsi_min_vals, r
 
         for sl in sl_vals:
             print(f"{simbolo} - {tipo} - TP={tp} / SL={sl}")
-            df_sim = simular(df, tp, sl, pip_size, tipo)
+            df_sim = simular(df, tp, sl, pip_size, tipo, exposicion)
 
 
             combinaciones = list(product(
