@@ -290,10 +290,7 @@ def ejecutar():
         ruta = config['ruta']
         pip_size = config['pip_size']
         salida_dir = os.path.dirname(ruta)
-
-        df = pd.read_csv(ruta, names=['timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'], skiprows=1)
-        # ⛔ Si el archivo no existe, lo crea con datos de muestra
-        # ⛔ Si el archivo no existe, lo crea con datos de muestra
+        
         if not os.path.exists(ruta):
             print(f"⚠️ Archivo no encontrado: {ruta}. Generando archivo simulado...")
             
@@ -313,6 +310,10 @@ def ejecutar():
             })
             df_fake.to_csv(ruta, index=False)
             print(f"✅ Archivo generado en: {ruta}")
+        df = pd.read_csv(ruta, names=['timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'], skiprows=1)
+        # ⛔ Si el archivo no existe, lo crea con datos de muestra
+        # ⛔ Si el archivo no existe, lo crea con datos de muestra
+
 
         df = df.rename(columns={'Open': 'o', 'High': 'h', 'Low': 'l', 'Close': 'c'})
         df = df.sort_values('timestamp').reset_index(drop=True)
