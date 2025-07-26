@@ -24,30 +24,32 @@ activos_ejecutar = {
 }
 
 modo_operacion = "AMBAS"
+DATA_DIR = os.getenv("DATA_DIR", "/workspace/data")
+os.makedirs(DATA_DIR, exist_ok=True)
 
 configuraciones = {
     "USDJPY": {
-        "ruta": "data/usdjpy_5min_2025.csv",
+        "ruta": os.path.join(DATA_DIR, "usdjpy_5min_2025.csv"),
         "pip_size": 0.01,
         "atr_min_vals": [0.03, 0.05, 0.07, 0.1],
     },
     "EURGBP": {
-        "ruta": "data/eurgbp_5min_2025.csv",
+        "ruta": os.path.join(DATA_DIR, "eurgbp_5min_2025.csv"),
         "pip_size": 0.0001,
         "atr_min_vals": [0.0003, 0.00045, 0.0006, 0.0009],
     },
     "EURUSD": {
-        "ruta": "data/eurusd_5min_2025.csv",
+        "ruta": os.path.join(DATA_DIR, "eurusd_5min_2025.csv"),
         "pip_size": 0.0001,
         "atr_min_vals": [0.0004, 0.00055, 0.0007, 0.001],
     },
     "GBPJPY": {
-        "ruta": "data/gbpjpy_5min_2025.csv",
+        "ruta": os.path.join(DATA_DIR, "gbpjpy_5min_2025.csv"),
         "pip_size": 0.01,
         "atr_min_vals": [0.07, 0.1, 0.14, 0.2],
     },
     "GBPUSD": {
-        "ruta": "data/gbpusd_5min_2025.csv",
+        "ruta": os.path.join(DATA_DIR, "gbpusd_5min_2025.csv"),
         "pip_size": 0.0001,
         "atr_min_vals": [0.00035, 0.0005, 0.0007, 0.001],
     }
