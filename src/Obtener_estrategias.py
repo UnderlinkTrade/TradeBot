@@ -22,6 +22,16 @@ activos_ejecutar = {
     "GBPJPY": True,
     "GBPUSD": False
 }
+# === RANGO DE PARÁMETROS A OPTIMIZAR ===
+tp_vals = [15, 20, 25, 30]
+sl_vals = [10, 15, 20]
+rsi_min_vals = [20, 30]
+rsi_max_vals = [70, 80]
+adx_min_vals = [20, 25]
+ema_filter = [True, False]
+ema_slope_filter = [True, False]
+candle_bullish_filter = [True, False]
+candle_bearish_filter = [True, False]
 
 modo_operacion = "AMBAS"
 DATA_DIR = os.getenv("DATA_DIR", "/workspace/data")
