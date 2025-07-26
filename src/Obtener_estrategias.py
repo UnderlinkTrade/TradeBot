@@ -197,7 +197,7 @@ def simular(df, tp_pips, sl_pips, pip_size, tipo, exposicion):
 
 def procesar_tipo_operacion(df, simbolo, tipo, tp_vals, sl_vals, rsi_min_vals, rsi_max_vals,
                             atr_min_vals, adx_min_vals, ema_filter, ema_slope_filter,
-                            candle_filter, pip_size):
+                            candle_filter, pip_size, exposicion):
 
     prefijo = f"{tipo}_{simbolo}"
     resultados_por_tp = {}
