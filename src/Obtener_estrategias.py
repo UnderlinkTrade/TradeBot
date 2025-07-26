@@ -53,16 +53,8 @@ configuraciones = {
     }
 }
 
-tp_vals = [12, 14, 16]
-sl_vals = [12, 14, 16]
-rsi_min_vals = [30, 35, 40, 45]
-rsi_max_vals = [60, 65, 70, 75]
-adx_min_vals = [15, 20, 25, 30, 35]
-ema_filter = [True, False]
-ema_slope_filter = [True, False]
-candle_bullish_filter = [True, False]
-candle_bearish_filter = [True, False]
-exposicion = 30000
+# Asegura carpeta `data`
+os.makedirs("data", exist_ok=True)
 
 def descargar_datos_polygon(simbolo: str, inicio: datetime, fin: datetime, ruta: str):
     print(f"📥 Descargando datos reales de {simbolo} desde Polygon...")
@@ -84,7 +76,6 @@ def descargar_datos_polygon(simbolo: str, inicio: datetime, fin: datetime, ruta:
             'o': 'Open', 'h': 'High', 'l': 'Low',
             'c': 'Close', 'v': 'Volume'
         })[['timestamp', 'Open', 'High', 'Low', 'Close', 'Volume']]
-        os.makedirs(os.path.dirname(ruta), exist_ok=True)
         df.to_csv(ruta, index=False)
         print(f"✅ Datos guardados en: {ruta}")
     except Exception as e:
@@ -275,7 +266,7 @@ def procesar_tipo_operacion(df, simbolo, tipo, tp_vals, sl_vals, rsi_min_vals, r
             resultados_por_tp[tp] = (pd.DataFrame(resultados), trazas)
 
     if resultados_por_tp:
-        output_path = f"/content/drive/MyDrive/Colab Notebooks/Backtest/RES_{prefijo}_{fecha_formateada}_resultados.xlsx"
+        output_path = f"data/RES_{prefijo}_{fecha_formateada}_resultados.xlsx"
         with pd.ExcelWriter(output_path, engine="xlsxwriter") as writer:
             for tp, (df_resultado, trazas) in resultados_por_tp.items():
                 columnas = list(df_resultado.columns)
