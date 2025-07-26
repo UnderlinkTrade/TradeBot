@@ -14,6 +14,7 @@ fecha_fin = "2025-07-25"
 fecha_inicio_dt = pd.to_datetime(fecha_inicio)
 fecha_fin_dt = pd.to_datetime(fecha_fin)
 fecha_formateada = f"{fecha_inicio.replace('-', '')}_hasta_{fecha_fin.replace('-', '')}"
+exposicion = 100000
 
 activos_ejecutar = {
     "USDJPY": False,
