@@ -3,7 +3,8 @@ import numpy as np
 from itertools import product
 import os
 import re
-from datetime import datetime
+from datetime import datetime  
+from tqdm import tqdm  # Asegúrate de que esté importado
 
 API_KEY = "MItpr9kHZmufmbqbGvxu_S7FsWF8Sljb"
 
@@ -204,6 +205,15 @@ def procesar_tipo_operacion(df, simbolo, tipo, tp_vals, sl_vals, rsi_min_vals, r
         for sl in sl_vals:
             print(f"{simbolo} - {tipo} - TP={tp} / SL={sl}")
             df_sim = simular(df, tp, sl, pip_size, tipo)
+
+
+            combinaciones = list(product(
+                rsi_min_vals, rsi_max_vals, atr_min_vals, adx_min_vals,
+                ema_filter, ema_slope_filter, candle_filter
+            ))
+            
+            for idx, (rsi_min, rsi_max, atr_min, adx_min, ema_c, ema_slope, candle_ok) in enumerate(tqdm(combinaciones, desc=f"{simbolo}-{tipo}-TP{tp}-SL{sl}")):
+                print(f"⏳ [{idx+1}/{len(combinaciones)}] RSI {rsi_min}-{rsi_max}, ATR>{atr_min}, ADX>{adx_min}, EMA={ema_c}, Slope={ema_slope}, Candle={candle_ok}")
 
             for rsi_min, rsi_max, atr_min, adx_min, ema_c, ema_slope, candle_ok in product(
                 rsi_min_vals, rsi_max_vals, atr_min_vals, adx_min_vals,
